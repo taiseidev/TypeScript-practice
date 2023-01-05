@@ -7,9 +7,19 @@
 //   age: 25,
 // };
 
-const person = {
-  name: "taisei",
-  age: 25,
-};
+{
+  const person = {
+    name: "taisei",
+    age: 25,
+    hobbies: ["Sports", "Cooking"],
+  };
 
-console.log(person);
+  let favoriteActivities: string[];
+  favoriteActivities = ["Sports"];
+
+  console.log(person);
+
+  for (const hobby of person.hobbies) {
+    console.log(hobby.toUpperCase());
+  }
+}
