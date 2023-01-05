@@ -1,15 +1,15 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-  const result = n1 + n2;
-  if (showResult) {
-    console.log(phrase + result);
-  } else {
-    return result;
-  }
-}
+// Objectを作成する際は型を明示的に指定するよりも推論させる方がよう冗長にならないので良い
+// const person: {
+//   name: string;
+//   age: number;
+// } = {
+//   name: "taisei",
+//   age: 25,
+// };
 
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = "Result: ";
+const person = {
+  name: "taisei",
+  age: 25,
+};
 
-add(number1, number2, printResult, resultPhrase);
+console.log(person);
