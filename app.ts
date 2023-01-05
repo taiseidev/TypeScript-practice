@@ -7,17 +7,40 @@
 //   age: 25,
 // };
 
+// {
+//   const person: {
+//     name: string;
+//     age: number;
+//     hobbies: string[];
+//     role: [number, string];
+//   } = {
+//     name: "taisei",
+//     age: 25,
+//     hobbies: ["Sports", "Cooking"],
+//     role: [2, "author"],
+//   };
+
+//   let favoriteActivities: string[];
+//   favoriteActivities = ["Sports"];
+
+//   console.log(person);
+
+//   for (const hobby of person.hobbies) {
+//     console.log(hobby.toUpperCase());
+//   }
+// }
+
 {
-  const person: {
-    name: string;
-    age: number;
-    hobbies: string[];
-    role: [number, string];
-  } = {
+  enum Role {
+    ADMIN,
+    READ_ONLY,
+    AUTHOR,
+  }
+  const person = {
     name: "taisei",
     age: 25,
     hobbies: ["Sports", "Cooking"],
-    role: [2, "author"],
+    role: Role.ADMIN,
   };
 
   let favoriteActivities: string[];
@@ -28,4 +51,8 @@
   for (const hobby of person.hobbies) {
     console.log(hobby.toUpperCase());
   }
+}
+
+if (person.role === Role.ADMIN) {
+  console.log("管理者ユーザ");
 }
