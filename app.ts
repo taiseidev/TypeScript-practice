@@ -1,58 +1,15 @@
-// Objectを作成する際は型を明示的に指定するよりも推論させる方がよう冗長にならないので良い
-// const person: {
-//   name: string;
-//   age: number;
-// } = {
-//   name: "taisei",
-//   age: 25,
-// };
-
-// {
-//   const person: {
-//     name: string;
-//     age: number;
-//     hobbies: string[];
-//     role: [number, string];
-//   } = {
-//     name: "taisei",
-//     age: 25,
-//     hobbies: ["Sports", "Cooking"],
-//     role: [2, "author"],
-//   };
-
-//   let favoriteActivities: string[];
-//   favoriteActivities = ["Sports"];
-
-//   console.log(person);
-
-//   for (const hobby of person.hobbies) {
-//     console.log(hobby.toUpperCase());
-//   }
-// }
-
-{
-  enum Role {
-    ADMIN,
-    READ_ONLY,
-    AUTHOR,
+function combine(input1: number | string, input2: number | string) {
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
   }
-  const person = {
-    name: "taisei",
-    age: 25,
-    hobbies: ["Sports", "Cooking"],
-    role: Role.ADMIN,
-  };
-
-  let favoriteActivities: string[];
-  favoriteActivities = ["Sports"];
-
-  console.log(person);
-
-  for (const hobby of person.hobbies) {
-    console.log(hobby.toUpperCase());
-  }
+  return result;
 }
 
-if (person.role === Role.ADMIN) {
-  console.log("管理者ユーザ");
-}
+const combinedAges = combine(30, 26);
+console.log(combinedAges);
+
+const combinedNames = combine("Max", "Anna");
+console.log(combinedNames);
