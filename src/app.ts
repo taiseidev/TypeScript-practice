@@ -20,10 +20,15 @@
 // generageError("エラーが発生しました", 500);
 
 {
+  function clickHandle(message: string) {
+    console.log("クリックされました" + message);
+  }
+
   // buttonがあることを明示的に指定するため!を追加
   const button = document.querySelector("button")!;
   // nullsafetyにすることができる
   button?.addEventListener("click", () => {
+    clickHandle("テスト");
     console.log("clicked!!");
   });
 }

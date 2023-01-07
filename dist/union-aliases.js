@@ -9,12 +9,6 @@ function combine(input1, input2, resultConversion) {
         result = input1.toString() + input2.toString();
     }
     return result;
-    // 適切な動作ではなかったのでコメントアウト
-    //   if (resultConversion === "as-number") {
-    //     return +result;
-    //   } else {
-    //     return result.toString();
-    //   }
 }
 const combinedAges = combine(30, 26, "as-number");
 console.log(combinedAges);
