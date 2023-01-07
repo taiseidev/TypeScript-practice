@@ -6,3 +6,6 @@ function printResult(num) {
 }
 printResult(add(5, 12));
 console.log(printResult(add(5, 12))); // 何も返さないため出力はundefinedとなる
+var combineValues;
+combineValues = add;
+console.log(combineValues(8, 8));
