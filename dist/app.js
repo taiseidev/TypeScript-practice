@@ -1,7 +1,26 @@
 "use strict";
-{
-    const button = document.querySelector("button");
-    button === null || button === void 0 ? void 0 : button.addEventListener("click", () => {
-        console.log("clicked!!");
-    });
+class Department {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+        this.employees = [];
+    }
+    describe() {
+        console.log(`Department(${this.id}): (${this.name})`);
+    }
+    addEmployee(employee) {
+        this.employees.push(employee);
+    }
+    printEmployeeInformation() {
+        console.log(this.employees.length);
+        console.log(this.employees);
+    }
 }
+const accounting = new Department("id1", "Accounting");
+console.log(accounting);
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
+accounting.printEmployeeInformation();
+accounting.describe();
+console.log(accounting.name);
+//# sourceMappingURL=app.js.map

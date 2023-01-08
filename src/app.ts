@@ -1,34 +1,40 @@
-// let userInput: unknown;
-// let userName: string;
+class Department {
+  //   private readonly id: string;
+  //   name: string;
+  private employees: string[] = [];
 
-// userInput = 5;
-// userInput = "Max";
-
-// if (typeof userInput === "string") {
-//   userName = userInput;
-// }
-
-// /// unknown型はany型と同じでどんな型でも入れることができる
-// /// unknown型はany型よりは良い選択肢
-// /// 書き換えをする際に型チェックを行う必要がある
-
-// /// 値を絶対に返さないことがわかっている場合はnever型を指定する
-// function generageError(message: string, code: number): never {
-//   throw { message: message, errorCode: code };
-// }
-
-// generageError("エラーが発生しました", 500);
-
-{
-  function clickHandle(message: string) {
-    console.log("クリックされました" + message);
+  // 変更不可の読み取り専用のプロパティについてはreadonly修飾子をつける
+  constructor(private readonly id: string, public name: string) {
+    //     this.id = id;
+    //     this.name = n;
   }
 
-  // buttonがあることを明示的に指定するため!を追加
-  const button = document.querySelector("button")!;
-  // nullsafetyにすることができる
-  button?.addEventListener("click", () => {
-    clickHandle("テスト");
-    console.log("clicked!!");
-  });
+  describe(this: Department) {
+    console.log(`Department(${this.id}): (${this.name})`);
+  }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
 }
+
+const accounting = new Department("id1", "Accounting");
+console.log(accounting);
+
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
+
+accounting.printEmployeeInformation();
+
+accounting.describe();
+
+console.log(accounting.name);
+
+// const accountingCopy = { name: "DUMMY", describe: accounting.describe };
+
+// accountingCopy.describe();

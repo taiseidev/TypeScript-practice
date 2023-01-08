@@ -1,2 +1,2 @@
 "use strict";
-console.log("loading..");
+//# sourceMappingURL=analytics.js.map

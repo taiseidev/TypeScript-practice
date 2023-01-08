@@ -44,8 +44,8 @@
     role: Role.ADMIN,
   };
 
-  let favoriteActivities: string[];
-  favoriteActivities = ["Sports"];
+  // let favoriteActivities: string[];
+  // favoriteActivities = ["Sports"];
 
   console.log(person);
 

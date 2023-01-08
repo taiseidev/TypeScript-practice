@@ -19,3 +19,4 @@
     combineValues = add;
     console.log(combineValues(8, 8));
 }
+//# sourceMappingURL=functions.js.map

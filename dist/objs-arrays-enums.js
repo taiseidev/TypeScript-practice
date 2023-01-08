@@ -12,8 +12,6 @@
         hobbies: ["Sports", "Cooking"],
         role: Role.ADMIN,
     };
-    let favoriteActivities;
-    favoriteActivities = ["Sports"];
     console.log(person);
     for (const hobby of person.hobbies) {
         console.log(hobby.toUpperCase());
@@ -22,3 +20,4 @@
         console.log("管理者ユーザ");
     }
 }
+//# sourceMappingURL=objs-arrays-enums.js.map
