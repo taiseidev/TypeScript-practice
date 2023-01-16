@@ -40,6 +40,9 @@
   // オブジェクト型の場合は各プロパティが使用できるようになる
   // type Universal = Combinables & Numeric;
 
+  // このように書くことによって戻り値を明確に示すことができる（関数オーバーロード）
+  function add(a: string, b: string): string;
+  function add(a: number, b: number): number;
   function add(a: Combinables, b: Combinables) {
     if (typeof a === "string" || typeof b === "string") {
       return a.toString() + b.toString();
@@ -47,112 +50,112 @@
     return a + b;
   }
 
-  add(12, 12);
+  const result = add(12, 12);
 
-  type UnknownEmployee = Employee | Admin;
+  // type UnknownEmployee = Employee | Admin;
 
-  function printEmployeeInformation(emp: UnknownEmployee) {
-    console.log(emp.name);
-    // カスタム型はjavascriptでは認識されないため、typeof emp === 'Admin'
-    // といった書き方はできない
-    if ("privileges" in emp) {
-      console.log("Privilages: " + emp.privileges);
-    }
-    if ("startDate" in emp) {
-      console.log("Privilages: " + emp.startDate);
-    }
-  }
+  // function printEmployeeInformation(emp: UnknownEmployee) {
+  //   console.log(emp.name);
+  //   // カスタム型はjavascriptでは認識されないため、typeof emp === 'Admin'
+  //   // といった書き方はできない
+  //   if ("privileges" in emp) {
+  //     console.log("Privilages: " + emp.privileges);
+  //   }
+  //   if ("startDate" in emp) {
+  //     console.log("Privilages: " + emp.startDate);
+  //   }
+  // }
 
-  // privilegesとstartDateが存在するため
-  printEmployeeInformation(e1);
-  printEmployeeInformation({
-    name: "Manu",
-    startDate: new Date(),
-  });
+  // // privilegesとstartDateが存在するため
+  // printEmployeeInformation(e1);
+  // printEmployeeInformation({
+  //   name: "Manu",
+  //   startDate: new Date(),
+  // });
 
-  class Car {
-    drive() {
-      console.log("運転中...");
-    }
-  }
+  // class Car {
+  //   drive() {
+  //     console.log("運転中...");
+  //   }
+  // }
 
-  class Truck {
-    drive() {
-      console.log("トラック運転中...");
-    }
+  // class Truck {
+  //   drive() {
+  //     console.log("トラック運転中...");
+  //   }
 
-    loadCargo(amount: number) {
-      console.log("荷物を乗せています..." + amount);
-    }
-  }
+  //   loadCargo(amount: number) {
+  //     console.log("荷物を乗せています..." + amount);
+  //   }
+  // }
 
-  type Vehicle = Car | Truck;
+  // type Vehicle = Car | Truck;
 
-  const v1 = new Car();
-  const v2 = new Truck();
+  // const v1 = new Car();
+  // const v2 = new Truck();
 
-  function useVehicle(vehicle: Vehicle) {
-    vehicle.drive();
+  // function useVehicle(vehicle: Vehicle) {
+  //   vehicle.drive();
 
-    // クラスをタプガードを行う場合はinstanceofを使うことによってクラスのチェックを行うことができる。
-    if (vehicle instanceof Truck) {
-      vehicle.loadCargo(1000);
-    }
-  }
+  //   // クラスをタプガードを行う場合はinstanceofを使うことによってクラスのチェックを行うことができる。
+  //   if (vehicle instanceof Truck) {
+  //     vehicle.loadCargo(1000);
+  //   }
+  // }
 
-  useVehicle(v1);
-  useVehicle(v2);
+  // useVehicle(v1);
+  // useVehicle(v2);
 
-  interface Bird {
-    type: "bird";
-    flyingSpeed: number;
-  }
+  // interface Bird {
+  //   type: "bird";
+  //   flyingSpeed: number;
+  // }
 
-  interface Horse {
-    type: "hourse";
-    runnningSpeed: number;
-  }
+  // interface Horse {
+  //   type: "hourse";
+  //   runnningSpeed: number;
+  // }
 
-  type Animal = Bird | Horse;
+  // type Animal = Bird | Horse;
 
-  function moveAnimal(animal: Animal) {
-    // if ("flyingSpeed" in animal) {
-    //   console.log(animal.flyingSpeed);
-    // }
-    let speed;
-    switch (animal.type) {
-      case "bird":
-        speed = animal.flyingSpeed;
-        break;
+  // function moveAnimal(animal: Animal) {
+  //   // if ("flyingSpeed" in animal) {
+  //   //   console.log(animal.flyingSpeed);
+  //   // }
+  //   let speed;
+  //   switch (animal.type) {
+  //     case "bird":
+  //       speed = animal.flyingSpeed;
+  //       break;
 
-      case "hourse":
-        speed = animal.runnningSpeed;
-        break;
-    }
-    console.log("移動速度： " + speed);
-  }
+  //     case "hourse":
+  //       speed = animal.runnningSpeed;
+  //       break;
+  //   }
+  //   console.log("移動速度： " + speed);
+  // }
 
-  moveAnimal({
-    type: "bird",
-    flyingSpeed: 10,
-  });
+  // moveAnimal({
+  //   type: "bird",
+  //   flyingSpeed: 10,
+  // });
 
-  // const userInputElement = <HTMLInputElement>(
-  //   document.getElementById("user-input")!
-  // );
+  // // const userInputElement = <HTMLInputElement>(
+  // //   document.getElementById("user-input")!
+  // // );
 
-  const userInputElement = document.getElementById("user-input")!;
-  if (userInputElement) {
-    (userInputElement as HTMLInputElement).value = "こんにちは";
-  }
+  // const userInputElement = document.getElementById("user-input")!;
+  // if (userInputElement) {
+  //   (userInputElement as HTMLInputElement).value = "こんにちは";
+  // }
 
-  // index型を使用したinterfaceの定義
-  interface ErrorContainer {
-    [props: string]: string;
-  }
+  // // index型を使用したinterfaceの定義
+  // interface ErrorContainer {
+  //   [props: string]: string;
+  // }
 
-  const errorBag: ErrorContainer = {
-    email: "正しいメールアドレスではありません。",
-    username: "ユーザ名に記号を含めることはできません。",
-  };
+  // const errorBag: ErrorContainer = {
+  //   email: "正しいメールアドレスではありません。",
+  //   username: "ユーザ名に記号を含めることはできません。",
+  // };
 }
