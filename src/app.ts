@@ -67,6 +67,16 @@
   // このようにすることによってそのプロパティがなかった場合は下の階層をアクセスすることはない。
   console.log(fetchedUserData?.job?.title);
 
+  const userInput = "";
+
+  // この場合から文字列がfalsyのためデフォルト値が格納されてしまう
+  // const storedData = userInput || 'DEFAULT';
+
+  // 下記のようにすることによってnullかundefinedの場合のみDEFAULTが格納される
+  // 空白の場合は空白として格納される
+  const storedData = userInput ?? "DEFAULT";
+  console.log(storedData);
+
   // type UnknownEmployee = Employee | Admin;
 
   // function printEmployeeInformation(emp: UnknownEmployee) {
