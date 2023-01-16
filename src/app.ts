@@ -52,6 +52,21 @@
 
   const result = add(12, 12);
 
+  const fetchedUserData = {
+    id: "u1",
+    name: "user1",
+    job: {
+      title: "Developer",
+      description: "TypeScript",
+    },
+  };
+
+  // もし何らかの理由でtitleが取得できなかった場合下記はエラーになってしまう、
+  console.log(fetchedUserData.job.title);
+
+  // このようにすることによってそのプロパティがなかった場合は下の階層をアクセスすることはない。
+  console.log(fetchedUserData?.job?.title);
+
   // type UnknownEmployee = Employee | Admin;
 
   // function printEmployeeInformation(emp: UnknownEmployee) {
