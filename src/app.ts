@@ -145,4 +145,14 @@
   if (userInputElement) {
     (userInputElement as HTMLInputElement).value = "こんにちは";
   }
+
+  // index型を使用したinterfaceの定義
+  interface ErrorContainer {
+    [props: string]: string;
+  }
+
+  const errorBag: ErrorContainer = {
+    email: "正しいメールアドレスではありません。",
+    username: "ユーザ名に記号を含めることはできません。",
+  };
 }
