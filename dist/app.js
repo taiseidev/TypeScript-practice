@@ -12,4 +12,8 @@ function countAndDescribe(element) {
     return [element, descriptionText];
 }
 console.log(countAndDescribe("お疲れ様様です"));
+function extractAndConvert(obj, key) {
+    return "value: " + obj[key];
+}
+extractAndConvert({ name: "Max" }, "name");
 //# sourceMappingURL=app.js.map

@@ -32,3 +32,20 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 }
 
 console.log(countAndDescribe("お疲れ様様です"));
+
+// 第一引数に渡したオブジェクトに特定のプロパティが格納されていることを保証するため
+// 第二引数のジェネリクスにはkeofを指定
+
+// 下記だとkey部分にエラーが発生する
+// function extractAndConvert<T extends object, U>(obj: T, key: U) {
+//   return "value: " + obj[key];
+// }
+
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return "value: " + obj[key];
+}
+
+extractAndConvert({ name: "Max" }, "name");
