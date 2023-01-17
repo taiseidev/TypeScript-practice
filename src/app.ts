@@ -15,3 +15,20 @@ function merge<T extends {}, U extends {}>(objA: T, objB: U) {
 
 const mergeObj = merge({ name: "Max" }, { age: 30 });
 console.log(mergeObj.age);
+
+interface Lengthy {
+  length: number;
+}
+
+// lengthプロパティのある方であればどんな型も入れることができる
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "値がありません";
+
+  if (element.length > 0) {
+    descriptionText = "値は" + element.length + "個です。";
+  }
+
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe("お疲れ様様です"));
