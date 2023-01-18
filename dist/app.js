@@ -6,9 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 {
-    function Logger(constructor) {
-        console.log("ログ出力中...");
-        console.log(constructor);
+    function Logger(logString) {
+        return function (constructor) {
+            console.log(logString);
+            console.log(constructor);
+        };
     }
     let Person = class Person {
         constructor() {
@@ -17,7 +19,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
         }
     };
     Person = __decorate([
-        Logger
+        Logger("ログ出力中 - Person")
     ], Person);
     const pers = new Person();
     console.log(pers);

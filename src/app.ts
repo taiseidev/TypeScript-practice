@@ -1,11 +1,13 @@
 {
   // デコレーターとして適用する際は大文字で命名
-  function Logger(constructor: Function) {
-    console.log("ログ出力中...");
-    console.log(constructor);
+  function Logger(logString: string) {
+    return function (constructor: Function) {
+      console.log(logString);
+      console.log(constructor);
+    };
   }
 
-  @Logger
+  @Logger("ログ出力中 - Person")
   class Person {
     name = "Max";
 
@@ -22,3 +24,5 @@
 // デコレーターはクラスが定義されたタイミングで実行
 // インスタンス化のタイミングではない
 // デコレーターはJavaScriptがクラスの定義を見つけた時に実行
+
+// デコレーターファクトリーを使うことによってデコレータの内部で行うことをカスタマイズすることができる
