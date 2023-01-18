@@ -10,13 +10,13 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
     /* Language and Environment */
     // どのjsのバージョンにコンパイルするか指定
-    "target": "es2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ES6", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     // libを指定していない場合はデフォルトのlibの設定が機能する
     // もしlibを解除した場合、ホワイトリスト形式で使用した機能の一部を設定することができる
     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     // jsxはReactを使うときに必要なオプション
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
-    // "experimentalDecorators": true,                   /* Enable experimental support for TC39 stage 2 draft decorators. */
+    "experimentalDecorators": true, /* Enable experimental support for TC39 stage 2 draft decorators. */
     // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
     // "jsxFactory": "",                                 /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h'. */
     // "jsxFragmentFactory": "",                         /* Specify the JSX Fragment reference used for fragments when targeting React JSX emit e.g. 'React.Fragment' or 'Fragment'. */
