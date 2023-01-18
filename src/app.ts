@@ -117,3 +117,9 @@ function createCourseGoal(
 const names: Readonly<string[]> = ["Max"];
 // Readonlyのためpushすることができない
 // names.push("Anna");
+
+// Union型
+// 関数が呼ばれた時に毎回設定したうちの一つの型を受け入れたい場合に向いている
+
+// ジェネリクス
+// 例えばクラスで特定の型に固定したい場合に向いている
