@@ -49,3 +49,71 @@ function extractAndConvert<T extends object, U extends keyof T>(
 }
 
 extractAndConvert({ name: "Max" }, "name");
+
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+  removeItem(item: T) {
+    // 引数に渡されるオブジェクトは実質的に新しいオブジェクトであるため、
+    // そのままspliceしてしまうとアドレスが見つからないため-1となってしまう
+    if (this.data.indexOf(item) === -1) {
+      return;
+    }
+    this.data.splice(this.data.indexOf(item, 1));
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+const textStorage = new DataStorage<string>();
+
+textStorage.addItem("Data1");
+textStorage.addItem("Data2");
+textStorage.removeItem("Data1");
+
+console.log(textStorage.getItems());
+
+const numberStorage = new DataStorage<number | string>();
+
+// const objStorage = new DataStorage<object>();
+
+// // 一度定数に格納することによって同じオブジェクト（ハッシュ値も同じ）を渡すことができる
+// const obj = { name: "Max" };
+
+// objStorage.addItem(obj);
+// objStorage.addItem({ name: "Manu" });
+// objStorage.removeItem(obj);
+
+// console.log(objStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  // Partialで囲うことによって任意のプロパティを設定することができる
+  // courseGoalにはtitle等のプロパティはないがPartialで囲ってることによっtえ
+  // 一時的にプロパティがあるということをTypeScriptに伝えることができる
+  let courseGoal: Partial<CourseGoal> = {};
+
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  // Partial型のためキャスとして返却
+  return courseGoal as CourseGoal;
+}
+
+const names: Readonly<string[]> = ["Max"];
+// Readonlyのためpushすることができない
+// names.push("Anna");
