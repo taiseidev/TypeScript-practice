@@ -1,15 +1,18 @@
 {
   // デコレーターとして適用する際は大文字で命名
-  // function Logger(logString: string) {
-  //   return function (constructor: Function) {
-  //     console.log(logString);
-  //     console.log(constructor);
-  //   };
-  // }
+  function Logger(logString: string) {
+    console.log("LOGGER ファクトリ");
+    return function (constructor: Function) {
+      console.log(logString);
+      console.log(constructor);
+    };
+  }
 
   function WithTemplate(template: string, hookId: string) {
+    console.log("TEMPLATE ファクトリ");
     // _を指定した場合引数では受け取るが使用しないことを明示している
     return function (constructor: any) {
+      console.log("テンプレートを表示");
       const hookEl = document.getElementById(hookId);
       const p = new constructor();
       if (hookEl) {
@@ -19,7 +22,9 @@
     };
   }
 
-  // @Logger("ログ出力中 - Person")
+  // デコレータ関数は下から上に実行される
+  //下記の場合はWithTemplateが先
+  @Logger("ログ出力中 - Person")
   @WithTemplate("<h1>Personオブジェクト</h1>", "app")
   class Person {
     name = "Max";
