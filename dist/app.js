@@ -121,12 +121,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     const p = new Printer();
     const button = document.querySelector("button");
     button.addEventListener("click", p.showMessage);
-    class Course {
-        constructor(t, p) {
-            this.title = t;
-            this.price = p;
-        }
-    }
     const courseForm = document.querySelector("form");
     courseForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -135,7 +129,50 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
         const title = titleEl.value;
         const price = +priceEl.value;
         const createdCourse = new Course(title, price);
+        if (!validate(createdCourse)) {
+            alert("正しく入力してください");
+            return;
+        }
         console.log(createdCourse);
     });
+    const registeredValidators = {};
+    function Required(target, propName) {
+        registeredValidators[target.constructor.name] = Object.assign(Object.assign({}, registeredValidators[target.constructor.name]), { [propName]: ["required"] });
+    }
+    function PositiveNumber(target, propName) {
+        registeredValidators[target.constructor.name] = Object.assign(Object.assign({}, registeredValidators[target.constructor.name]), { [propName]: ["positive"] });
+    }
+    function validate(obj) {
+        const objValidatorConfig = registeredValidators[obj.constructor.name];
+        if (!objValidatorConfig) {
+            return true;
+        }
+        let isValid = true;
+        for (const prop in objValidatorConfig) {
+            for (const validator of objValidatorConfig[prop]) {
+                switch (validator) {
+                    case "required":
+                        isValid = isValid && !!obj[prop];
+                        break;
+                    case "positive":
+                        isValid = isValid && obj[prop] > 0;
+                        break;
+                }
+            }
+        }
+        return isValid;
+    }
+    class Course {
+        constructor(t, p) {
+            this.title = t;
+            this.price = p;
+        }
+    }
+    __decorate([
+        Required
+    ], Course.prototype, "title", void 0);
+    __decorate([
+        PositiveNumber
+    ], Course.prototype, "price", void 0);
 }
 //# sourceMappingURL=app.js.map
