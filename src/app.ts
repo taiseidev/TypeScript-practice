@@ -96,8 +96,9 @@
     }
   }
 
-  const pro = new Product("", 1);
-  console.log(pro);
+  const p1 = new Product("Book", 100);
+  const p2 = new Product("Book2", 200);
+  // console.log(pro);
 }
 
 // デコレーターはクラスが定義されたタイミングで実行
