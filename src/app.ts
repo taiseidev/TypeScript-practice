@@ -1,13 +1,26 @@
 {
   // デコレーターとして適用する際は大文字で命名
-  function Logger(logString: string) {
-    return function (constructor: Function) {
-      console.log(logString);
-      console.log(constructor);
+  // function Logger(logString: string) {
+  //   return function (constructor: Function) {
+  //     console.log(logString);
+  //     console.log(constructor);
+  //   };
+  // }
+
+  function WithTemplate(template: string, hookId: string) {
+    // _を指定した場合引数では受け取るが使用しないことを明示している
+    return function (constructor: any) {
+      const hookEl = document.getElementById(hookId);
+      const p = new constructor();
+      if (hookEl) {
+        hookEl.innerHTML = template;
+        hookEl.querySelector("h1")!.textContent = p.name;
+      }
     };
   }
 
-  @Logger("ログ出力中 - Person")
+  // @Logger("ログ出力中 - Person")
+  @WithTemplate("<h1>Personオブジェクト</h1>", "app")
   class Person {
     name = "Max";
 

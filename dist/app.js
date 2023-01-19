@@ -6,10 +6,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 {
-    function Logger(logString) {
+    function WithTemplate(template, hookId) {
         return function (constructor) {
-            console.log(logString);
-            console.log(constructor);
+            const hookEl = document.getElementById(hookId);
+            const p = new constructor();
+            if (hookEl) {
+                hookEl.innerHTML = template;
+                hookEl.querySelector("h1").textContent = p.name;
+            }
         };
     }
     let Person = class Person {
@@ -19,7 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
         }
     };
     Person = __decorate([
-        Logger("ログ出力中 - Person")
+        WithTemplate("<h1>Personオブジェクト</h1>", "app")
     ], Person);
     const pers = new Person();
     console.log(pers);
