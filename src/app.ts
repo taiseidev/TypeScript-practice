@@ -11,14 +11,21 @@
   function WithTemplate(template: string, hookId: string) {
     console.log("TEMPLATE ファクトリ");
     // _を指定した場合引数では受け取るが使用しないことを明示している
-    return function (constructor: any) {
-      console.log("テンプレートを表示");
-      const hookEl = document.getElementById(hookId);
-      const p = new constructor();
-      if (hookEl) {
-        hookEl.innerHTML = template;
-        hookEl.querySelector("h1")!.textContent = p.name;
-      }
+    return function <T extends { new (...args: any[]): { name: string } }>(
+      originalConstructor: T
+    ) {
+      return class extends originalConstructor {
+        // 新しく生成したクラスを返している
+        constructor(..._: any[]) {
+          super();
+          console.log("テンプレートを表示");
+          const hookEl = document.getElementById(hookId);
+          if (hookEl) {
+            hookEl.innerHTML = template;
+            hookEl.querySelector("h1")!.textContent = this.name;
+          }
+        }
+      }; // 新しいクラスを返却
     };
   }
 
@@ -106,3 +113,5 @@
 // デコレーターはJavaScriptがクラスの定義を見つけた時に実行
 
 // デコレーターファクトリーを使うことによってデコレータの内部で行うことをカスタマイズすることができる
+
+// クラスに使いされるデコレータはコンストラクタ関数を返却することができる
